@@ -1,0 +1,26 @@
+# One-click Render deployment (Dashboard -> New -> Blueprint -> pick this repo).
+# Secrets marked sync:false are entered in the Render dashboard; nothing secret is stored here.
+services:
+  - type: web
+    name: glasflow-erp
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: Auth__JwtKey
+        generateValue: true
+      - key: Auth__DemoPassword
+        sync: false
+      - key: Ai__Provider
+        value: openai
+      - key: Ai__BaseUrl
+        value: https://generativelanguage.googleapis.com/v1beta/openai
+      - key: Ai__Model
+        value: gemini-3.5-flash
+      - key: Ai__MaxTokens
+        value: "2000"
+      - key: Ai__TimeoutSeconds
+        value: "45"
+      - key: Ai__ApiKey
+        sync: false

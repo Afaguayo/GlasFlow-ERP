@@ -151,6 +151,8 @@ Desktop client (API running):
 dotnet run --project src/GlasFlow.Desktop
 ```
 
+**Cloud demo:** one-click Render deployment (Docker + SQLite), described in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
 Manual SQL setup without the API: run `database/01` → `05` with sqlcmd or SSMS (see `database/README.md`).
 
 ## Configuration
@@ -177,7 +179,7 @@ Swagger UI at `/swagger`; endpoint reference in [docs/API_DOCUMENTATION.md](docs
 dotnet test
 ```
 
-68 tests (domain unit tests, service tests on real EF Core + SQLite, HTTP integration tests through the full ASP.NET pipeline). Latest run: **68 passed, 0 failed**. The SQL scripts were verified separately against SQL Server 2022 Express. Coverage and gaps: [docs/TESTING.md](docs/TESTING.md).
+71 tests (domain unit tests, service tests on real EF Core + SQLite, HTTP integration tests through the full ASP.NET pipeline). Latest run: **71 passed, 0 failed**. The SQL scripts were verified separately against SQL Server 2022 Express. Coverage and gaps: [docs/TESTING.md](docs/TESTING.md).
 
 ## Screenshots
 
@@ -196,7 +198,7 @@ Real captures of the running application (Microsoft Edge via Playwright), in `do
 
 | Status | Items |
 |---|---|
-| **Fully implemented and verified** | REST API and all business workflows (verified on SQL Server and SQLite); schema, constraints, migrations; seed; stored procedures, views, triggers (exercised with sqlcmd, including failure cases and idempotent re-runs); automation; CSV import/export; reports + CSV; JWT auth and roles; web frontend (scripted end-to-end run of every page in Edge); AI assistant fallback path; 68 automated tests |
+| **Fully implemented and verified** | REST API and all business workflows (verified on SQL Server and SQLite); schema, constraints, migrations; seed; stored procedures, views, triggers (exercised with sqlcmd, including failure cases and idempotent re-runs); automation; CSV import/export; reports + CSV; JWT auth and roles; web frontend (scripted end-to-end run of every page in Edge); AI assistant fallback path; 71 automated tests |
 | **Implemented, partially verified** | WPF desktop client: builds with 0 warnings, and a headless `--smoke` run against the API passes, but the screens were not clicked through and there are no desktop screenshots. LLM providers: implemented against the providers' public HTTP APIs, but not called live (no key here) |
 | **Documented, not implemented** | Native Crystal Reports `.rpt` files (runtime not installed); connectors to a specific real ERP; webhooks / message queue; OAuth2 client credentials |
 | **Not tested** | Load / concurrency under real multi-user traffic; deployment to a server; printing to a physical printer |

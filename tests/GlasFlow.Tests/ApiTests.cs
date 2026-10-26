@@ -57,6 +57,16 @@ public class ApiTests(ApiFactory factory) : IClassFixture<ApiFactory>
         Assert.Equal("Healthy", (await Body(r)).GetProperty("status").GetString());
     }
 
+    [Theory]
+    [InlineData("/swagger/index.html")]
+    [InlineData("/openapi/v1.json")]
+    [InlineData("/")]
+    public async Task Docs_and_web_ui_are_public(string path)
+    {
+        var r = await factory.CreateClient().GetAsync(path);
+        Assert.Equal(HttpStatusCode.OK, r.StatusCode);
+    }
+
     [Fact]
     public async Task Api_requires_authentication()
     {

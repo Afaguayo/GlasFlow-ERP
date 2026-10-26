@@ -70,18 +70,19 @@ app.UseStatusCodePages();
 if (!app.Environment.IsDevelopment()) app.UseHsts();
 app.UseDefaultFiles();
 app.UseStaticFiles();
-app.UseCors();
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseRateLimiter();
-
-app.MapOpenApi().AllowAnonymous();
+// Swagger UI is static documentation; it must run before the "authenticated by default" authorization policy.
 app.UseSwaggerUI(o =>
 {
     o.SwaggerEndpoint("/openapi/v1.json", "GlasFlow ERP API v1");
     o.RoutePrefix = "swagger";
     o.DocumentTitle = "GlasFlow ERP API";
 });
+app.UseCors();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseRateLimiter();
+
+app.MapOpenApi().AllowAnonymous();
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = async (ctx, report) =>
