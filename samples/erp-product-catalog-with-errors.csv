@@ -1,0 +1,7 @@
+erp_sku,code,name,familia,descripcion,uom,costo,precio,min_stock,proveedor
+SKU-90001,TMP-8MM,Vidrio templado 8 mm,TEMPERED,Templado para puertas de ducha,sqm,760,1210,40,PRV-001
+SKU-90004,,Espejo bronce 4 mm,FROSTED,Sin código: se genera ERP-SKU-90004,sqm,410,690,20,PRV-001
+SKU-90005,X-PLS,Lámina de policarbonato,PLASTIC,Categoría desconocida,sqm,300,500,10,PRV-001
+SKU-90006,X-LOW,Vidrio claro 3 mm,CLEAR,Precio menor que costo,sqm,200,150,10,PRV-001
+SKU-90007,X-SUP,Bisagra de piso,HARDWARE,Proveedor inexistente,ea,500,900,5,PRV-999
+SKU-90001,X-DUP,Fila duplicada,TEMPERED,ExternalId repetido en el archivo,sqm,1,2,0,

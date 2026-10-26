@@ -1,0 +1,4 @@
+erp_sku,code,name,familia,descripcion,uom,costo,precio,min_stock,proveedor
+SKU-90001,TMP-8MM,Vidrio templado 8 mm,TEMPERED,Templado para puertas de ducha,sqm,760,1210,40,PRV-001
+SKU-90002,DEC-GRB,Vidrio grabado decorativo 6 mm,DECORATIVE,Diseño floral,sqm,690,1100,15,PRV-001
+SKU-90003,ACC-JAL,Jaladera de acero inoxidable 30 cm,HARDWARE,Para puerta de vidrio,ea,240,420,30,PRV-002

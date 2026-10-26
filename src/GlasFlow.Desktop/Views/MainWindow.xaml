@@ -1,0 +1,52 @@
+<Window x:Class="GlasFlow.Desktop.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GlasFlow ERP — Escritorio" Width="1280" Height="780" MinWidth="980" MinHeight="600"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left navigation -->
+        <Border Background="{StaticResource SidebarBrush}">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="20,22,20,22">
+                    <TextBlock Text="GlasFlow ERP" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="Escritorio" Foreground="#9CA3AF"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom" Margin="20,14">
+                    <TextBlock Text="{Binding UserName}" Foreground="White" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Role}" Foreground="#9CA3AF" FontSize="11"/>
+                    <TextBlock Text="{Binding ApiUrl}" Foreground="#6B7280" FontSize="10" Margin="0,2,0,8" TextTrimming="CharacterEllipsis"/>
+                    <Button Content="Cerrar sesión" Command="{Binding LogoutCommand}" Margin="0"/>
+                </StackPanel>
+                <ListBox ItemsSource="{Binding Screens}" SelectedItem="{Binding Selected}" Background="Transparent" BorderThickness="0"
+                         ItemContainerStyle="{StaticResource NavItem}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}" FontSize="14" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <!-- Content -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ProgressBar IsIndeterminate="True" Height="4" BorderThickness="0" Background="Transparent"
+                         Visibility="{Binding Current.IsBusy, Converter={StaticResource BoolToVisibility}}"/>
+            <Border Grid.Row="1" Style="{StaticResource ErrorBanner}" Margin="20,12,20,0"
+                    Visibility="{Binding Current.HasError, Converter={StaticResource BoolToVisibility}}">
+                <TextBlock Text="{Binding Current.ErrorMessage}" TextWrapping="Wrap" Foreground="{StaticResource DangerBrush}"/>
+            </Border>
+            <ContentControl Grid.Row="2" Content="{Binding Selected}" Margin="20"/>
+        </Grid>
+    </Grid>
+</Window>
